@@ -205,15 +205,12 @@
           <li>Markdown</li>
           <li>reStructuredText</li>
           <li>AsciiDoc</li>
-          <li>HTML</li>
         </ul>
 
         <aside class="notes">
           El formato de la documentación es el formato en el que está escrita la fuente de la documentación.
           Algunos generadores de documentación soportan varios formatos.
           Entre los más populares están Markdown y reStructuredText.
-          Y si te sientes aventurado, puedes incluso escribir tu documentación directamente en HTML,
-          con eso ya ni necesitas un generador de documentación.
         </aside>
       </section>
 
@@ -419,6 +416,8 @@
             Texto *cursivo*, **negrita**.
             `Enlace &lt;https://example.com&gt;`__.
 
+            Ver más en :doc:`/api`.
+
             Subtítulo
             ---------
 
@@ -543,6 +542,19 @@
           <li>Go to definition</li>
           <li>Refactoring</li>
         </ul>
+
+        <aside class="notes">
+          LSP, o language server protocol es lo que provee a tu editor
+          de todos estos features.
+          Y lo chévere es que es agnóstico del editor que uses,
+          mientras que tu editor tenga soporte para LSP, lo único que necesitas
+          hacer es instalar el server y listo.
+
+          Pero tal vez se pregunten, estos escribiendo documentación,
+          no código, de verdad necesito todo esto?
+          Puede que no, pero puede que mejore tu experiencia mientras
+          escribes documentation.
+        </aside>
       </section>
 
       <section>
@@ -554,6 +566,8 @@
       <section>
         <h2>LSP</h2>
         <em>Demo: Neovim, BTW</em>
+
+        <video src="video/marksman-demo.mp4" class="r-stretch" controls></video>
       </section>
 
       <section>
@@ -565,13 +579,22 @@
       <section>
         <h2>LSP</h2>
         <em>Demo: Neovim, BTW</em>
+
+        <video src="video/esbonio-demo.mp4" class="r-stretch" controls></video>
       </section>
 
       <section>
-        <h2>LSP</h2>
+        <h2>LSP editor support</h2>
         <img src="img/editors.png" class="r-stretch">
-      </section>
 
+        <aside class="notes">
+          Mientras que tu editor tenga soporte para LSP builtin,
+          usar el LSP no es más que instalar el server y decirle a tu editor donde encontrarlo.
+
+          O incluso si tu editor no tiene soporte para LSP por defecto, probablemente exista un plugin
+          que puedas usar.
+        </aside>
+      </section>
 
       <section>
         <h2>Tree-sitter</h2>
@@ -588,17 +611,46 @@
           <li>
             Injections (resaltado de bloques de código)
           </li>
+          <li>
+            Indentación
+          </li>
         </ul>
+
+        <aside class="notes">
+          Tree-sitter es otra herramienta agnóstica del editor que uses.
+          Y provee resaltado de sintáxis, básicamente le da color a tu texto.
+
+          Lo que más me gusta de tree-sitter para escribir documentación
+          es que provee injections, que es injectar un lenguaje dentro de de otro.
+          Úitl para bloques de código.
+        </aside>
       </section>
 
       <section>
-        <h2>tree-sitter</h2>
-        <img src="img/editors.png" class="r-stretch">
-      </section>
-
-      <section>
-        <h2>tree-sitter</h2>
+        <h2>tree-sitter-markdown</h2>
         <em>Demo: Neovim, BTW</em>
+
+        <video src="video/tree-sitter-markdown-demo.mp4" class="r-stretch" controls></video>
+      </section>
+
+      <section>
+        <h2>tree-sitter-rst</h2>
+        <em>Demo: Neovim, BTW</em>
+
+        <video src="video/tree-sitter-rst-demo.mp4" class="r-stretch" controls></video>
+      </section>
+
+      <section>
+        <h2>tree-sitter editor support</h2>
+        <img src="img/editors.png" class="r-stretch">
+
+        <aside class="notes">
+          Al principio les dije que tree-sitter es agnóstico
+          del editor que uses, pero a diferencia de LSP no
+          es muy común encontrarlo en todos los editores.
+          Y con eso me refiero a que gran parte los soportan,
+          a excepción de vscode...
+        </aside>
       </section>
 
       <section>
@@ -611,6 +663,9 @@
           <li>AI como GH copilot, or ChatGPT</li>
         </ul>
         <aside class="notes">
+          Otras recomendaciones son. No les digo nombres específicos,
+          ya que es muy fácil encontrar plugins que proveen esto para sus editores,
+          o pueda que hasta incluyan estas cosas por defecto.
           Y claro, como fue obligatorio incluir una sección de AI en todas las charlas
           de este FliSoL, aquí va la mía.
           No mentira, es broma, no me baneen de la siguiente edición.
@@ -627,6 +682,13 @@
         <p>
         <img src="img/diataxis.webp">
         </p>
+
+        <aside class="notes">
+          Otra recommendación es diataxis,
+          que provee un framework para organizar tu documentación.
+          Y aquí framework no se refiere a algo como django,
+          sino a una serie de directivas que debes seguir al escribir y organizar tu documentación.
+        </aside>
       </section>
 
       <section>
@@ -636,55 +698,121 @@
           Separa las líneas por sentido semántico, no por un límite de caracteres.
         </p>
         <a href="https://rhodesmill.org/brandon/2012/one-sentence-per-line/">https://rhodesmill.org/brandon/2012/one-sentence-per-line/</a>
+
+        <aside class="notes">
+          Otra recommendación muy útil de como escribir tu documentación
+          es de no separar tus líneas de manera arbitraria o por un límite de caracteres.
+          Si no hacerlo por sentido semántico,
+          es decir cada oración por línea.
+          Veamos un ejemplo para que quede más claro a qué se refiere esto.
+        </aside>
       </section>
 
       <section>
         <h3>Line breaks arbitrarios</h3>
         <img src="img/arbitrary-linebreak.png">
+
+        <aside class="notes">
+          Aquí tenemos un diff de los cambios realizados a un párrafo.
+          Este es un extracto de wikipedia sobre el flisol.
+          En este párrafo hice un cambio del texto "números.." por "este número...".
+
+          Pero ya que en este ejemplo se está separando las líneas por un límite de caracteres,
+          este pequeño cambio introduce otros cambios en todo el párrafo,
+          y queda claro qué se cambió exactamente.
+
+          Si, el texto se ve más uniforme,
+          pero imaginen hacer un review de varios cambios...
+          El cambio en una sola palabra puede introducir varios cambios.
+        </aside>
       </section>
 
       <section>
         <h3>Semantic line breaks</h3>
         <img src="img/semantic-linebreak.png">
-      </section>
-
-      <section>
-        <h2>Hosting</h2>
-      </section>
-
-      <section>
-        <h2>Ejemplo de bloque de código</h2>
-        <p>
-          Código de ejemplo
-        </p>
-
-        <pre class=""><code data-trim data-noescape class="python">
-            print("Hola mundo")
-        </code></pre>
 
         <aside class="notes">
-          Notas
+          Acá tenemos el mismo párrafo con el mismo cambio.
+          Pero en este caso cada linea es una oración,
+          y si hay un cambio en una oración el diff es my claro
+          sobre donde está el cambio, las demás líneas quedan intactas.
+
+          Puede que no se vea tan uniforme como el ejemplo anterior,
+          pero es hasta mucho más fácil de leer.
         </aside>
       </section>
 
       <section>
-        <h2>Table</h2>
-        <table class="borderless align-center">
-          <tr>
-            <td>Fila 1, columna 1</td>
-            <td>Fila 1, columna 2</td>
-          </tr>
-          <tr>
-            <td>Fila 2, columna 1</td>
-            <td>Fila 2, columna 2</td>
-          </tr>
-        </table>
+        <h2>Hosting</h2>
+
+        <img src="img/theinternet.jpg" class="r-stretch">
+
+        <aside class="notes">
+          Ya tenemos nuestra documentación escrita,
+          ya solo nos falta exponerla al mundo.
+          Y qué mejor manera que hacerlo usando la web.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Hosting</h2>
+
+        <h3>HTTP server</h3>
+
+        <img src="img/http-servers.png" class="r-stretch">
+
+        <aside class="notes">
+          Cualquier herramienta que hayas escogido,
+          probablemente te de como resultado varios archivos HTML.
+          Así que los puedes hostear en cualquier servidor que
+          soporte archivos estáticos.
+
+          A menos que hayas escogido alguna herramienta
+          que requiera server side rendering y esas cosas...
+        </aside>
+      </section>
+
+      <section>
+        <h2>Hosting</h2>
+        <h3>Cloud services</h3>
+
+        <img src="img/hosting-platforms.png" class="r-stretch">
+
+        <aside class="notes">
+          O también puedes usar servicios como GitHub pages,
+          o GitLab pages, Cloudflare pages, Netlify, Read the Docs.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Hosting</h2>
+        <h3>¿Cuál escoger?</h3>
+
+        <img src="img/bart.jpg" class="r-stretch">
+
+        <aside class="notes">
+          Al igual que las otras herramientas,
+          el hosting a escoger depende de tus necesidades y proyecto.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Git service as documentation hosting</h2>
+
+        <code>docs/index.md</code>
+
+        <aside class="notes">
+          Y si no quieres lidear con todo esto,
+          tienes la opción de simplemente crear una carpeta docs
+          en tu repositorio, y dejar que el serivicio que uses
+          para hostear tu código se encargue de renderizar la documentación.
+        </aside>
       </section>
 
       <section data-transition="zoom">
-        <h2>Frase para terminar la charla</h2>
+        <h2>README.md</h2>
         <p>
-          subtitulo de la frase
+          Una simple documentación es mejor que no documentación.
         </p>
 
         <img src="img/qr.png" class="r-stretch">
@@ -692,19 +820,12 @@
         <footer>
           <p>
             <small>
-              <a href="" class="go-to-next-slide navigate-next">
-                Referencias y recursos
-                <i class="fa-regular fa-bookmark"></i>
-                <i class="fa-solid fa-link"></i>
-              </a>
-              <br>
-              <br>
-              <a href="https://github.com/stsewd/charla-xxx" target="_blank">
+              <a href="https://github.com/stsewd/charla-documenta-tu-proyecto" target="_blank">
                 <span>
                   Código fuente <i class="fas fa-code-branch"></i>
                 </span>
                 <br />
-                <span>https://github.com/stsewd/charla-xxx</span>
+                <span>https://github.com/stsewd/charla-documenta-tu-proyecto</span>
               </a>
             </small>
           </p>
@@ -721,6 +842,9 @@
         </footer>
 
         <aside class="notes">
+          Y bueno, antes de terminar igual quiero promover la importancia de contribuir
+          a proyectos open source, y que mejor manera que contribuir con documentación.
+
           Ahí les dejo el enlace a esta presentación y a mi blog donde a veces escribo cosas.
           Y también estan las vulnerabilidades que he reportado y que son públicas.
 
@@ -728,41 +852,9 @@
           preguntas. Si algo no se entendió, es probablemente mi culpa, no lo expliqué
           bien, así que siéntanse libres de preguntar algo incluso si ya lo
           di en la presentación, y lo voy a tratar de aclarar.
-        </aside>
-      </section>
 
-      <section>
-        <div>
-          <h2>Referencias y recursos</h2>
-          <small>
-            <ul>
-              <li>
-                <a href="#" target="_blank">Simple link</a>
-              </li>
-              <li>
-                Link with text:
-                <a href="#" target="_blank">
-                  https://example.com
-                </a>
-              </li>
-              <li>
-                Group of links:
-                <ul>
-                  <li>
-                    <a href="#" target="_blank">
-                      https://example.com/1/
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" target="_blank">
-                      https://example.com/2/
-                    </a>
-                  </li>
-                </ul>
-              </li>
-            </ul>
-          </small>
-        </div>
+          También si quieren luego podemos charla sobre más cosas a fondo.
+        </aside>
       </section>
     </div>
   </div>
