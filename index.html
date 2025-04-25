@@ -1,0 +1,791 @@
+<!doctype html>
+<html>
+
+<head>
+  <!-- vim: set ft=html: -->
+  <!-- Force Neovim to use HTML as filetype, the `@for` from `@fortawesome` makes it think we are using angular...  -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+  <title>Documenta tu proyecto con herramientas open source</title>
+
+  <link rel="stylesheet" href="node_modules/reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="node_modules/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="node_modules/reveal.js/dist/theme/white.css">
+  <link rel="stylesheet" href="css/custom.css">
+
+  <!-- Theme used for syntax highlighting of code -->
+  <link rel="stylesheet" href="node_modules/@highlightjs/cdn-assets/styles/atom-one-light.css">
+
+  <!-- Fontawesome -->
+  <link href="node_modules/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+
+  <!-- Scripts to interact with the slides -->
+  <script src="js/start.js" defer></script>
+</head>
+
+<body>
+  <div class="reveal">
+    <div class="slides">
+      <section>
+        <h2>
+          Antes de empezar...
+        </h2>
+
+        <table class="borderless align-top">
+          <tr>
+            <td>
+              <a href="?view=scroll">
+                Scroll view
+                <i class="fa-solid fa-mobile-screen"></i>
+              </a>
+              <br>
+              <small>
+                Si estás en un dispositivo móvil.
+              </small>
+            </td>
+            <td>
+              <a href="?view=fragment">
+                Fragment view
+                <i class="fa-solid fa-list"></i>
+              </a>
+              <br>
+              <small>
+                Tal como se ve en la presentación.
+              </small>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="#" class="activate-speaker-mode">
+                Speaker mode
+                <i class="fa-regular fa-comments"></i>
+              </a>
+              <br>
+              <small>
+                Para ver las notas del presentador.
+              </small>
+            </td>
+            <td>
+              <a href="?print-pdf">
+                Print mode
+                <i class="fa-solid fa-print"></i>
+              </a>
+              <br>
+              <small>
+                Exportar a PDF.
+              </small>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a href="#" class="show-search">
+                Search
+                <i class="fa-solid fa-magnifying-glass"></i>
+              </a>
+              <br>
+              <small>
+                Busca en la presentación (Ctrl + Shift + F).
+              </small>
+            </td>
+            <td>
+              <a href="#" class="show-shortcuts">
+                Shortcuts
+                <i class="fa-regular fa-circle-question"></i>
+              </a>
+            </td>
+          </tr>
+        </table>
+
+        <p>
+          Navega usando
+          <button class="black-button navigate-next">
+            espacio
+          </button>
+        </p>
+      </section>
+
+      <section>
+        <header>
+          <h1>Documenta tu proyecto</h1>
+          <h2>con herramientas open source</h2>
+        </header>
+        <p>
+          <small>
+            Santos Gallegos
+            -
+            <a href="mailto:stsewd@proton.me">
+              stsewd@proton.me
+            </a>
+          </small>
+          <br>
+          <small>
+            @stsewd
+            <a href="https://github.com/stsewd" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://twitter.com/stsewd" target="_blank"><i class="fab fa-twitter"></i></a>
+          </small>
+        </p>
+
+        <aside class="notes">
+          Notes
+        </aside>
+      </section>
+
+      <section>
+        <h2>$ WHOAMI</h2>
+        <ul>
+          <li>Web developer <i class="fab fa-python"></i></li>
+          <li>Ethical hacker</li>
+          <li>
+            @stsewd - <a href="https://stsewd.dev/" target="_blank">https://stsewd.dev/</a>
+          </li>
+        </ul>
+
+        <p>
+          <img src="img/rtd-logo-vertical.png" height="75px">
+        </p>
+        <aside class="notes">
+          Hola, soy Santos Gallegos, soy desarrollador web, y hacker ético.
+          He contribuido a proyectos open source,
+          y he reportado vulnerabilidades en varios proyectos como Neovim,
+          GitPython, django-allauth, Read the Docs, Sentry, y más.
+          Principalmente trabajo con Python en el backend.
+          Actualmente trabajo en Read the Docs, soy core developer.
+          De vez en cuando también hago bug bounty.
+          Me pueden encontrar en Internet como @stsewd.
+
+          Quizás me recuerden de charlas relacionadas a la importancia de contribuir a proyectos open source,
+          o tal vez no, porque no suelen haber muchas personas interesadas en esas charlas.
+          Así que hoy les vengo a hablar sobre herramientas que pueden usar para documentar sus proyectos.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Escogiendo tus herramientas</h2>
+
+        <img src="img/blue-red-pill.jpeg" class="r-stretch">
+
+        <aside class="notes">
+          Lo que primero necesitamos es escoger nuestras herramientas.
+          Mi experiencia mayormente ha sido con la Web, Python, y Sphinx, así que gran parte de la charla será enfocada en eso.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Generador de documentación</h2>
+
+        <p>
+         Genera documentación a partir de una fuente.
+        </p>
+
+        <ul>
+          <li>MkDocs</li>
+          <li>Sphinx</li>
+          <li>Doxygen</li>
+          <li>Asciidoctor</li>
+          <li>Docusaurus</li>
+        </ul>
+
+        <aside class="notes">
+          Una de las herramientas importantes es el generador de documentación.
+          Este se encarga de generar nuestra documentación a partir de una fuente.
+          Lo que genera es usualmente un sitio web estático, HTML, o un PDF.
+          La fuente puede ser un archivo de texto, código, una especificación.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Formato de la documentación</h2>
+
+        <p>
+         El formato en el que está escrita la fuente de la documentación.
+        </p>
+
+        <ul>
+          <li>Markdown</li>
+          <li>reStructuredText</li>
+          <li>AsciiDoc</li>
+          <li>HTML</li>
+        </ul>
+
+        <aside class="notes">
+          El formato de la documentación es el formato en el que está escrita la fuente de la documentación.
+          Algunos generadores de documentación soportan varios formatos.
+          Entre los más populares están Markdown y reStructuredText.
+          Y si te sientes aventurado, puedes incluso escribir tu documentación directamente en HTML,
+          con eso ya ni necesitas un generador de documentación.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Escogiendo tus herramientas</h2>
+
+        <img src="img/all-pills.jpg" class="r-stretch">
+
+        <aside class="notes">
+          Como vimos, las opciones no son pocas,
+          no es tan fácil como escoger entre dos opciones.
+          Sino algo más parecido a esto,
+          muchas opciones de varios colores y sabores.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Escogiendo tus herramientas</h2>
+
+        <img src="img/bart.jpg" class="r-stretch">
+
+        <aside class="notes">
+          Entonces, cuál es la opción que debería escoger?
+          Y como buen señor developer, la respuesta es: depende.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Escogiendo tus herramientas</h2>
+
+        <ul>
+          <li>Ecosistema/lenguaje</li>
+          <li>Necesidades</li>
+          <li>Tamaño de tu proyecto</li>
+        </ul>
+
+        <aside class="notes">
+          La respuesta depende de varios factores.
+          Cada ecosistema tiene sus propias herramientas, convenciones, estándares
+          o herramientas populares en su comunidad.
+          Necesitas generar documentación a partir de tu código, una especificación,
+          o a partir de archivos de texto? o una combinación de estos?
+          Tu documentación va dirigida a desarrolladores o a usuarios finales? o ambos?
+
+          Si tu proyecto es muy específico, o es un simple script,
+          un simple archivo README.txt puede ser suficiente.
+          Si tu proyecto es grande, o está dividido en varios proyectos,
+          y necesitas generar documentación para cada uno de ellos,
+          y entrelazarlos.
+        </aside>
+      </section>
+
+      <section>
+        <h3>Ejemplo: Rust</h3>
+
+        <img src="img/rust-logo.png" class="r-stretch">
+
+        <p>
+        <a href="https://doc.rust-lang.org/rustdoc/">
+          https://doc.rust-lang.org/rustdoc/
+        </a>
+        </p>
+
+        <aside class="notes">
+          Veamos un par de ejemplos.
+          Si estás trabajando en Rust, probablemente deberías usar el generador de documentación
+          incluído en el lenguaje, `rustdoc`.
+        </aside>
+      </section>
+
+      <section>
+        <h3>Ejemplo: Python</h3>
+
+        <img src="img/python-logo.png" class="r-stretch">
+
+        <ul>
+          <li>Sphinx</li>
+          <li>MkDocs</li>
+        </ul>
+
+        <aside class="notes">
+          O si estás usando Python,
+          este no tiene un generador de documentación incluído,
+          pero las opciones más populares son Sphinx y MkDocs.
+
+          Sphinx tiene mayor integración con el ecosistema de Python,
+          y varias cosas vienen incluidas por defecto.
+          Mientras tanto que MkDocs es más simple,
+          pero requiere de varias extensiones externas para alcanzar la misma funcionalidad que Sphinx.
+        </aside>
+      </section>
+
+      <section>
+        <h3>Ejemplo: CLI</h3>
+
+        <pre><code data-trim data-noescape class="command">
+            $ man man-pages
+            $ man groff
+        </code></pre>
+
+        <aside class="notes">
+          Si estás escribiendo un programa que funciona desde la línea de comandos,
+          así que es conveniente que tu documentación esté disponible desde la línea de comandos.
+          Ya sea algo simple que los usuarios puedan acceder con la opción `--help`,
+          o algo más complejo como un manpage que los usuarios pueden leer con el comando `man`.
+        </aside>
+      </section>
+
+      <section>
+        <h3>Ejemplo: API</h3>
+
+        <p>
+          <a href="https://www.openapis.org/">https://www.openapis.org/</a>
+        </p>
+
+        <aside class="notes">
+          O si estás escribiendo una API,
+          probablemente deberías usar un formato estándar como OpenAPI.
+          Varios de los frameworks web usados para crear APIs
+          tienen soporte para generar una especificación OpenAPI a partir de tu código.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Formato</h2>
+        <img src="img/markdown-logo.png" class="r-stretch">
+        <img src="img/rst-logo.svg" class="r-stretch">
+
+        <aside class="notes">
+          Ya tocamos el tema de los generadores de documentación,
+          ahora viene un tema más controversial...
+          Qué formato de texto usar?
+        </aside>
+      </section>
+
+      <section>
+        <h2>Markdown</h2>
+        <img src="img/markdown-soup.png" class="r-stretch">
+
+        <aside class="notes">
+          El formato más popular es Markdown, está en todo lado, lo encontramos hasta en la sopa.
+          Probablemente la mayoría de ustedes ya lo conocen,
+          o tal vez hasta lo han usando sin darse cuenta.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Markdown</h2>
+        <pre><code data-trim data-noescape class="markdown">
+            # Título
+
+            Texto *cursivo*, **negrita** y ~~tachado~~.
+            [Enlace](https://example.com).
+
+            ## Subtítulo
+
+            - Lista 1
+            - Lista 2
+
+            ![Imagen](https://example.com/image.png)
+
+            ```python
+            print("Hola mundo")
+            ```
+        </code></pre>
+
+        <a href="https://commonmark.org/">
+          https://commonmark.org/
+        </a>
+
+        <aside class="notes">
+          Así es como luce Markdown.
+          Markdown es fácil de leer, escribir, y aprender.
+          Como les mencionaba, este formato está en todo lado
+          hasta las apps de mensajería soportan ciertos elementos de Markdown...
+          y eso es un problema.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Markdown</h2>
+        <img src="img/standards.png" class="">
+
+        <aside class="notes">
+          Y es que el estándar original se queda corto cuando necesitas cosas más complejas o extenderlo.
+          Por lo que cada quien terminó implementado su propia versión de Markdown,
+          por lo que ahora tenemos un montón de variantes de Markdown (flavors).
+
+          Tenemos el estándar de CommonMark, que es el más usado,
+          pero luego tenemos GitHub Flavored Markdown,
+          GitLab Flavored Markdown, Pandoc Markdown,
+          y un montón de variantes más.
+        </aside>
+      </section>
+
+      <section>
+        <h2>reStructuredText</h2>
+
+        <pre><code data-trim data-noescape class="rst">
+            Título
+            ======
+
+            Texto *cursivo*, **negrita**.
+            `Enlace &lt;https://example.com&gt;`__.
+
+            Subtítulo
+            ---------
+
+            - Lista 1
+            - Lista 2
+
+            .. image:: https://example.com/image.png
+
+            .. code:: python
+
+               print("Hola mundo")
+        </code></pre>
+
+        <a href="https://docutils.sourceforge.io/rst.html">
+          https://docutils.sourceforge.io/rst.html
+        </a>
+
+        <aside class="notes">
+          La otra opción popular, sobre todo en el ecosistema de Python, es reStructuredText.
+          El cual tiene un estándar definido, y fue diseñado para ser extensible.
+
+          Tampoco es que sea perfecto, no es tan ubicuo como Markdown,
+          lo que hace que su sintaxis no sea tan familiar para la mayoría de los usuarios.
+          Al ser extensible, tiene más conceptos que aprender, como roles y directivas.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Generadores y formatos</h2>
+
+        <ul>
+          <li>
+            MkDocs: Markdown
+          </li>
+          <li>
+            Sphinx: reStructuredText, Markdown, MyST
+          </li>
+          <li>
+			Jupyter Book: MyST
+          </li>
+        </ul>
+
+        <aside class="notes">
+          Ya conocemos las opciones que tenemos de generadores de documentación y formatos.
+          Pero usualmente el formato a usar depende del generador de documentación.
+
+          MyST está ahí, pero no hablamos es ese formato...
+          Y bueno, se acuerdan de que cada cierto tiempo alguien tiene la idea de
+          crear un nuevo flavor de Markdown que sea mejor que el resto?
+          Así que MySt es un flavor de Markdown, se reproducen como framweorks de JavaScript.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Escribiendo documentación</h2>
+
+        <ul>
+          <li>Teclado</li>
+          <li>Editor</li>
+        </ul>
+
+        <aside class="notes">
+          Ya tenemos las herramientas a usar,
+          ahora viene lo divertido, escribir la documentación.
+
+          Y para escribir la documentación necesitamos dos cosas:
+          una manera de escribir el texto, y una manera de editarlo.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Teclado</h2>
+
+        <img src="img/ducky-one-mini.webp" class="r-stretch">
+
+        <aside class="notes">
+          La manera más cómoda de escribir es usando un teclado.
+
+          Personalmente me gusta usar un teclado mecánico,
+          un ducky one mini es una buena opción.
+          Pero cualquier teclado sirve, hoy no vamos a hablar de teclados...
+          Es un tema muy controversial y no quiero entrar en eso.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Editor</h2>
+        <img src="img/editors.png" class="r-stretch">
+
+        <aside class="notes">
+          Lo que si vamos a hablar es de un tema menos controversial,
+          editores de texto.
+
+          Mentira, cualquier editor de texto que tenga soporte para el formato que elegiste
+          es una buena opción.
+          La magia de Markdown y reStructuredText es que son fáciles de leer y escribir,
+          y son agnósticos al editor que uses.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Editor</h2>
+        <img src="img/better-editor.jpg" class="r-stretch">
+
+        <aside class="notes">
+          Pero si voy a hacer un par de recomendaciones
+          de herramientas que puedes usar en tu editor
+          para que tengas una mejor experiencia escribiendo documentación.
+        </aside>
+      </section>
+
+      <section>
+        <h2>LSP</h2>
+        <p>
+          Language server protocol
+        </p>
+
+        <ul>
+          <li>Autocompletado</li>
+          <li>Errores</li>
+          <li>Documentación (hover)</li>
+          <li>Go to definition</li>
+          <li>Refactoring</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>LSP</h2>
+        <h3>Markdown: Marksman</h3>
+        <a href="https://github.com/artempyanykh/marksman">https://github.com/artempyanykh/marksman</a>
+      </section>
+
+      <section>
+        <h2>LSP</h2>
+        <em>Demo: Neovim, BTW</em>
+      </section>
+
+      <section>
+        <h2>LSP</h2>
+        <h3>reStructuredText: esbonio</h3>
+        <a href="https://docs.esbon.io/">https://docs.esbon.io/</a>
+      </section>
+
+      <section>
+        <h2>LSP</h2>
+        <em>Demo: Neovim, BTW</em>
+      </section>
+
+      <section>
+        <h2>LSP</h2>
+        <img src="img/editors.png" class="r-stretch">
+      </section>
+
+
+      <section>
+        <h2>Tree-sitter</h2>
+        <p>
+          Syntax highlighting
+        </p>
+        <ul>
+          <li>
+            Resaltado más preciso (y rápido)
+          </li>
+          <li>
+            Resaltado basado en scopes y contexto
+          </li>
+          <li>
+            Injections (resaltado de bloques de código)
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>tree-sitter</h2>
+        <img src="img/editors.png" class="r-stretch">
+      </section>
+
+      <section>
+        <h2>tree-sitter</h2>
+        <em>Demo: Neovim, BTW</em>
+      </section>
+
+      <section>
+        <h2>Editor</h2>
+        <h3>Otras recomendaciones</h3>
+        <ul>
+          <li>Checker de ortografía/gramática</li>
+          <li>Diccionario</li>
+          <li>Corrector de estilo (<a href="https://vale.sh/">https://vale.sh/</a>)</li>
+          <li>AI como GH copilot, or ChatGPT</li>
+        </ul>
+        <aside class="notes">
+          Y claro, como fue obligatorio incluir una sección de AI en todas las charlas
+          de este FliSoL, aquí va la mía.
+          No mentira, es broma, no me baneen de la siguiente edición.
+        </aside>
+      </section>
+
+      <section>
+        <h2>Otras recomendaciones</h2>
+        <h3>Diatáxis</h3>
+        <p>
+          Framework para organizar tu documentación
+        </p>
+        <a href="https://diataxis.fr/">https://diataxis.fr/</a>
+        <p>
+        <img src="img/diataxis.webp">
+        </p>
+      </section>
+
+      <section>
+        <h2>Otras recomendaciones</h2>
+        <h3>Semantic line breaks</h3>
+        <p>
+          Separa las líneas por sentido semántico, no por un límite de caracteres.
+        </p>
+        <a href="https://rhodesmill.org/brandon/2012/one-sentence-per-line/">https://rhodesmill.org/brandon/2012/one-sentence-per-line/</a>
+      </section>
+
+      <section>
+        <h3>Line breaks arbitrarios</h3>
+        <img src="img/arbitrary-linebreak.png">
+      </section>
+
+      <section>
+        <h3>Semantic line breaks</h3>
+        <img src="img/semantic-linebreak.png">
+      </section>
+
+      <section>
+        <h2>Hosting</h2>
+      </section>
+
+      <section>
+        <h2>Ejemplo de bloque de código</h2>
+        <p>
+          Código de ejemplo
+        </p>
+
+        <pre class=""><code data-trim data-noescape class="python">
+            print("Hola mundo")
+        </code></pre>
+
+        <aside class="notes">
+          Notas
+        </aside>
+      </section>
+
+      <section>
+        <h2>Table</h2>
+        <table class="borderless align-center">
+          <tr>
+            <td>Fila 1, columna 1</td>
+            <td>Fila 1, columna 2</td>
+          </tr>
+          <tr>
+            <td>Fila 2, columna 1</td>
+            <td>Fila 2, columna 2</td>
+          </tr>
+        </table>
+      </section>
+
+      <section data-transition="zoom">
+        <h2>Frase para terminar la charla</h2>
+        <p>
+          subtitulo de la frase
+        </p>
+
+        <img src="img/qr.png" class="r-stretch">
+
+        <footer>
+          <p>
+            <small>
+              <a href="" class="go-to-next-slide navigate-next">
+                Referencias y recursos
+                <i class="fa-regular fa-bookmark"></i>
+                <i class="fa-solid fa-link"></i>
+              </a>
+              <br>
+              <br>
+              <a href="https://github.com/stsewd/charla-xxx" target="_blank">
+                <span>
+                  Código fuente <i class="fas fa-code-branch"></i>
+                </span>
+                <br />
+                <span>https://github.com/stsewd/charla-xxx</span>
+              </a>
+            </small>
+          </p>
+
+          <p>
+            <small>
+              @stsewd
+              <a href="http://github.com/stsewd" target="_blank"><i class="fab fa-github"></i></a>
+              <a href="http://twitter.com/stsewd" target="_blank"><i class="fab fa-twitter"></i></a>
+              -
+              <a href="https://stsewd.dev" target="_blank">https://stsewd.dev</a>
+            </small>
+          </p>
+        </footer>
+
+        <aside class="notes">
+          Ahí les dejo el enlace a esta presentación y a mi blog donde a veces escribo cosas.
+          Y también estan las vulnerabilidades que he reportado y que son públicas.
+
+          Eso fue todo por hoy, espero hayan aprendido algo nuevo. Ahora vamos a las
+          preguntas. Si algo no se entendió, es probablemente mi culpa, no lo expliqué
+          bien, así que siéntanse libres de preguntar algo incluso si ya lo
+          di en la presentación, y lo voy a tratar de aclarar.
+        </aside>
+      </section>
+
+      <section>
+        <div>
+          <h2>Referencias y recursos</h2>
+          <small>
+            <ul>
+              <li>
+                <a href="#" target="_blank">Simple link</a>
+              </li>
+              <li>
+                Link with text:
+                <a href="#" target="_blank">
+                  https://example.com
+                </a>
+              </li>
+              <li>
+                Group of links:
+                <ul>
+                  <li>
+                    <a href="#" target="_blank">
+                      https://example.com/1/
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" target="_blank">
+                      https://example.com/2/
+                    </a>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </small>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="node_modules/reveal.js/dist/reveal.js"></script>
+  <script src="node_modules/reveal.js/plugin/notes/notes.js"></script>
+  <script src="node_modules/reveal.js/plugin/markdown/markdown.js"></script>
+  <script src="node_modules/reveal.js/plugin/search/search.js"></script>
+  <script src="node_modules/reveal.js/plugin/zoom/zoom.js"></script>
+  <script src="node_modules/reveal.js/plugin/highlight/highlight.js"></script>
+  <script>
+    // More info about initialization & config:
+    // - https://revealjs.com/initialization/
+    // - https://revealjs.com/config/
+    Reveal.initialize({
+      hash: true,
+      maxScale: 1,
+      width: 1060,
+      height: 800,
+      // Learn about plugins: https://revealjs.com/plugins/
+      plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealSearch, RevealZoom]
+    });
+  </script>
+</body>
+
+</html>
